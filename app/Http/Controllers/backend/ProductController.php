@@ -11,27 +11,28 @@ use function Ramsey\Uuid\v1;
 
 class ProductController extends Controller
 {
-    public function add(){
+    public function add()
+    {
         return view("backend.pages.product.manageproduct");
     }
 
-    public function store(Request $rqst){
-        $valid = Validator::make($rqst->all(),[
-            'name'=>'required',
-            'des'=>'required',
-            'size'=>'required',
-            'color'=>'required',
-            'prd_code'=>'required',
-            'cost_price'=>'required',
-            'sales_price'=>'required'
+    public function store(Request $rqst)
+    {
+        $valid = Validator::make($rqst->all(), [
+            'name' => 'required',
+            'des' => 'required',
+            'size' => 'required',
+            'color' => 'required',
+            'prd_code' => 'required',
+            'cost_price' => 'required',
+            'sales_price' => 'required'
         ]);
-        if($valid->fails()){
+        if ($valid->fails()) {
             return response()->json([
-                "status"=>"failed",
-                "errors"=>$valid->messages()
+                "status" => "failed",
+                "errors" => $valid->messages()
             ]);
-        }
-        else{
+        } else {
             $data = new Product;
             $data->name = $rqst->name;
             $data->des = $rqst->des;
@@ -42,9 +43,8 @@ class ProductController extends Controller
             $data->sales_price = $rqst->sales_price;
             $data->save();
             return response()->json([
-                "status"=>"success"
+                "status" => "success"
             ]);
         }
-
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\BranchController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\Product2Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,12 @@ Route::group(['prefix'=>'/product'],function(){
     Route::post('/store',[ProductController::class,'store']);
     //Route::get('/show',[BranchController::class,'show'])->name('branchmanage');
     //Route::get('/delete/{id}',[BranchController::class,'destroy'])->name('delete');
+});
+
+/*All Product routes */
+
+Route::group(['prefix'=>'/product2'],function(){
+    Route::get('/index',[Product2Controller::class,'index'])->name('addproduct');
 });
 
 
